@@ -9,8 +9,8 @@ Advent of Code is a series of fun coding challenges during the month of December
 These solutions are not made in an attempt to reach the global leaderboard but
 rather for personal development and for fun!
 
-The repository is organized with branches, a branch for each year and each day is put
-into a folder of its own. No build files or sample data from AoC is uploaded.
+The repository is organized by folders, a folder for each year and each day is put
+into a subfolder of its own. No build files or sample data from AoC is uploaded.
 
 | Year | Language | Description |
 | ---- | -------- | ----------- |
