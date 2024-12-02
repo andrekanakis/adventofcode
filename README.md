@@ -1,18 +1,17 @@
-# 🎄 Advent of Code 2024
+# 🎄 Advent of Code
 
 --------
 
-Solutions for [Advent of Code](https:://adventofcode.com) for the year of 2024.
+This is a repo over my solutions for [Advent of Code](https://adventofcode.com/)
+created by [Eric Wastl](https://was.tl/)
 
-For 2024 I decided to use it as an opportunity to further learn C++ in
-addition to the course EDAF30 that I am currently enrolled in at LTH.
+Advent of Code is a series of fun coding challenges during the month of December.
+These solutions are not made in an attempt to reach the global leaderboard but
+rather for personal development and for fun!
 
-| Day |
-| --- |
-| [01](https://github.com/andrekanakis/adventofcode/blob/aoc2024/day1/day1.cc) |
-| [02](https://github.com/andrekanakis/adventofcode/blob/aoc2024/day2/day2.cc) |
+The repository is organized with branches, a branch for each year and each day is put
+into a folder of its own. No build files or sample data from AoC is uploaded.
 
---------
-
-You might be able to find my solutions for other years in the other branches
-or by viewing the [main-branch](https://github.com/andrekanakis/adventofcode/tree/main)
+| Year | Language | Description |
+| ---- | -------- | ----------- |
+| [2024](https://github.com/andrekanakis/adventofcode/tree/main/aoc2024) | C++ | Learning C++ in conjunction with the EDAF30 course given at LTH |
