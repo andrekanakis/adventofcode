@@ -1,9 +1,9 @@
 #include <algorithm>
+#include <vector>
 #include <cctype>
 #include <cstddef>
 #include <cstdlib>
 #include <fstream>
-#include <regex>
 #include <string>
 #include <iostream>
 
@@ -12,6 +12,7 @@ void part2(std::ifstream& file);
 int countXMAS_part1(const std::string& str); 
 std::vector<std::string> create_diagonals_tlbr(const std::vector<std::string>& input);
 std::vector<std::string> create_diagonals_bltr(const std::vector<std::string>& input);
+int countXMAS_part2(const std::vector<std::string>& input);
 
 
 int main() {
@@ -26,8 +27,8 @@ int main() {
 	file.clear();
 	file.seekg(0);
 
-	/*std::cout << "Part 2: ";*/
-	/*part2(file);*/
+	std::cout << "Part 2: \n";
+	part2(file);
 	
 	file.close();
 	return 0;
@@ -88,19 +89,19 @@ void part1(std::ifstream& file) {
 		grand_total += countXMAS_part1(reversed_diagonal);
 	}
 	
-	std::cout << "Total XMAS occurances: " << grand_total << '\n';
+	std::cout << grand_total << '\n';
 
 }
 
 void part2(std::ifstream& file) {
 	std::string line;
-	std::string content;
+	std::vector<std::string> input;
 
 	while (std::getline(file, line)) {
-		content += line + '\n';
+		input.push_back(line);
 	}
 
-	std::cout << 0 << '\n';
+	std::cout << countXMAS_part2(input) << '\n';
 }
 
 int countXMAS_part1(const std::string& str) {
@@ -171,4 +172,52 @@ std::vector<std::string> create_diagonals_bltr(const std::vector<std::string>& i
 		}
 	}
 	return diagonals;
+}
+
+int countXMAS_part2(const std::vector<std::string>& input) {
+	int count {0};
+	int rows = input.size();
+	int cols = input[0].size();
+
+	for (int i = 1; i < rows -1; ++i) {
+		for (int j = 1; j < cols - 1; ++j) {
+			if (input[i][j] != 'A') {
+				continue;
+			}
+
+			bool found = false;
+
+			// check tlbr and bltr and check them with different combinations
+			// of being reversed and not reversed
+			if ((i > 0 && j > 0 && i < rows - 1 && j < cols - 1) &&
+			input[i-1][j-1] == 'M' && input[i+1][j+1] == 'S' &&	// tlbr MAS
+			input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S') {	// bltr MAS
+				found = true;
+			}
+
+			else if ((i > 0 && j > 0 && i < rows - 1 && j < cols - 1) &&
+			input[i-1][j-1] == 'M' && input[i+1][j+1] == 'S' &&	// tlbr MAS
+			input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M') {	// bltr reversse MAS
+				found = true;
+			}
+
+			else if ((i > 0 && j > 0 && i < rows - 1 && j < cols - 1) &&
+			input[i-1][j-1] == 'S' && input[i+1][j+1] == 'M' &&	// tlbr reverse MAS
+			input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S') {	// bltr MAS
+				found = true;
+			}
+			
+			else if ((i > 0 && j > 0 && i < rows - 1 && j < cols - 1) &&
+			input[i-1][j-1] == 'S' && input[i+1][j+1] == 'M' &&	// tlbr reverse MAS
+			input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M') {	// bltr reverse MAS
+				found = true;
+			}
+
+			if (found) {
+				++count;
+			}
+
+		}
+	}
+	return count;
 }
