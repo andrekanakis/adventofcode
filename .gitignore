@@ -1,6 +1,7 @@
 #AOC INPUTS
 **/input/
 input.txt
+sample.txt
 
 # bin-subfolders
 **/bin/
