@@ -103,7 +103,7 @@ bool guard_walk(std::vector<std::vector<char>>& grid, int& guard_row, int& guard
 	int col_dir {};
 	
 	// get orientation (x, y), where X is hori and Y is vert.
-	// (x,y) = (-1, 0) means we are going left, (0, 1) means we are going up
+	// (x,y) = (-1, 0) means we are going up, (0, 1) means we are going right
 	switch (dir) {
 		case '^': row_dir = -1; col_dir = 0; break; // up: decrease row
 		case '>': row_dir = 0; col_dir = 1; break; // right: increase col
