@@ -1,17 +1,23 @@
+#include <algorithm>
 #include <cctype>
 #include <cstddef>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 
 void part1(std::ifstream& file);
 void part2(std::ifstream& file);
+void part2();
 void get_start(std::ifstream& file, std::vector<std::vector<char>>& grid, int& start_row, int& start_col);
 char turn(char& dir);
 bool guard_walk(std::vector<std::vector<char>>& grid, int& guard_row, int& guard_col, char& dir, bool& moved);
+bool guard_obstacles(std::vector<std::vector<char>> grid, int start_row, int start_col);
+
 
 
 int main() {
@@ -28,7 +34,7 @@ int main() {
 	file.seekg(0);
 
 	std::cout << "Part 2: \n";
-	/*part2(file);*/
+	part2(file);
 	
 	file.close();
 	return 0;
@@ -45,11 +51,12 @@ void part1(std::ifstream& file) {
 
 	get_start(file, grid, guard_row, guard_col);
 
+	std::vector<std::vector<char>> cp_grid = grid;
 	// start walking, return true if we could walk
 	// return false if guard exited
 	bool still_in_area {true};
 	while (still_in_area) {
-		still_in_area = guard_walk(grid, guard_row, guard_col, dir, moved);
+		still_in_area = guard_walk(cp_grid, guard_row, guard_col, dir, moved);
 
 		if (moved) {
 			++total;
@@ -58,10 +65,40 @@ void part1(std::ifstream& file) {
 	std::cout << total << '\n';
 }
 
-/*void part2(std::ifstream& file) {*/
-/*	long long total{0};*/
-/*	std::cout << total << '\n';*/
-/*}*/
+void part2(std::ifstream& file) {
+	int total = 0;
+	std::vector<std::vector<char>> grid;
+	int start_row{}, start_col{};
+	get_start(file, grid, start_row, start_col);
+    
+	// get the path the guard walks
+	std::vector<std::vector<char>> path_grid = grid;
+	int guard_row = start_row;
+	int guard_col = start_col;
+	char dir = '^';
+	bool moved = false;
+	std::set<std::pair<int, int>> traversed;
+	//
+	// mark all positions the guard visits
+	while (guard_walk(path_grid, guard_row, guard_col, dir, moved)) {
+		traversed.insert({guard_row, guard_col});
+	}
+	
+	// try each position the guard walks past
+	for (const auto& pos : traversed) {
+		if (grid[pos.first][pos.second] != '.' || 
+			(pos.first == start_row && pos.second == start_col)) {
+				continue;
+			}
+
+		std::vector<std::vector<char>> test_grid = grid;
+		test_grid[pos.first][pos.second] = '#';
+		if (guard_obstacles(test_grid, start_row, start_col)) {
+			total++;
+		}
+	}
+    std::cout << total << '\n';
+}
 
 void get_start(std::ifstream& file, std::vector<std::vector<char>>& grid, int& start_row, int& start_col) {
 	std::string line;
@@ -101,7 +138,7 @@ bool guard_walk(std::vector<std::vector<char>>& grid, int& guard_row, int& guard
 	int next_col = guard_col;
 	int row_dir {};
 	int col_dir {};
-	
+
 	// get orientation (x, y), where X is hori and Y is vert.
 	// (x,y) = (-1, 0) means we are going up, (0, 1) means we are going right
 	switch (dir) {
@@ -137,4 +174,28 @@ bool guard_walk(std::vector<std::vector<char>>& grid, int& guard_row, int& guard
 		moved = false;
 	}
 	return true;
+}
+
+// returns true if we find a loop, false if guard exits
+bool guard_obstacles(std::vector<std::vector<char>> grid, int start_row, int start_col) {
+	int guard_row = start_row;
+	int guard_col = start_col;
+	char dir = '^';
+	bool moved = false;
+
+	std::set<std::string> visited;
+
+	while (true) {
+		std::string state = std::to_string(guard_row) + "," + std::to_string(guard_col) + "," + dir;
+
+		if (visited.find(state) != visited.end()) {
+			return true;
+		}
+
+		visited.insert(state);
+
+		if (!guard_walk(grid, guard_row, guard_col, dir, moved)) {
+			return false;
+		}
+	}
 }
