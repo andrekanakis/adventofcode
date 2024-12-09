@@ -69,7 +69,6 @@ std::vector<std::string> change_to_zeros(std::string& input) {
 			for (int i = 0; i < c - '0'; ++i) {
 				std::string str = std::to_string(id);
 				result.push_back(str);
-
 			}
 			++index;
 			++id;
@@ -102,17 +101,6 @@ void sort_zeroes(std::vector<std::string>& input) {
 			--right;
 		}
 	}
-
-	/*for (size_t i = 0; i < input.size(); ++i) {*/
-	/*	if (input[i] == ".") {*/
-	/*		for (size_t j = input.size() - 1; j > i; --j) {*/
-	/*			if (input[j] != ".") {*/
-	/*				std::swap(input[i], input[j]);*/
-	/*				break;*/
-	/*			}*/
-	/*		}*/
-	/*	}*/
-	/*}*/
 }
 
 long long count_checksum(std::vector<std::string>& input) {
@@ -120,7 +108,6 @@ long long count_checksum(std::vector<std::string>& input) {
 	for (size_t i = 0; i < input.size(); ++i) {
 		if (input[i] == ".") {
 			continue;
-			/*return total;*/
 		}	
 		total += (std::stoi(input[i]) * i);
 	}
