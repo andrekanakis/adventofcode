@@ -12,6 +12,7 @@ rather for personal development and for fun!
 The repository is organized by folders, a folder for each year and each day is put
 into a subfolder of its own. No build files or sample data from AoC is uploaded.
 
-| Year | Language | Description |
-| ---- | -------- | ----------- |
-| [2024](https://github.com/andrekanakis/adventofcode/tree/main/aoc2024) | C++ | Learning C++ in conjunction with the EDAF30 course given at LTH |
+| Year | Language | 
+| ---- | -------- |
+| [2024](https://github.com/andrekanakis/adventofcode/tree/main/aoc2024) | C++ | 
+| [2025](https://github.com/andrekanakis/adventofcode/tree/main/aoc2025) | Python | 
