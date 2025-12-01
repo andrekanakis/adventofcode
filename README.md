@@ -15,4 +15,4 @@ into a subfolder of its own. No build files or sample data from AoC is uploaded.
 | Year | Language | 
 | ---- | -------- |
 | [2024](https://github.com/andrekanakis/adventofcode/tree/main/aoc2024) | C++ | 
-| [2025](https://github.com/andrekanakis/adventofcode/tree/main/aoc2025) | Python | 
+| [2025](https://github.com/andrekanakis/adventofcode/tree/main/aoc2025) | Mix | 
