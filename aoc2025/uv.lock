@@ -2,6 +2,12 @@ version = 1
 revision = 3
 requires-python = ">=3.13"
 
+[manifest]
+members = [
+    "aoc2025",
+    "day02",
+]
+
 [[package]]
 name = "aoc2025"
 version = "0.1.0"
@@ -16,6 +22,11 @@ requires-dist = [
     { name = "numpy", specifier = ">=2.3.5" },
     { name = "pandas", specifier = ">=2.3.3" },
 ]
+
+[[package]]
+name = "day02"
+version = "0.1.0"
+source = { virtual = "day02" }
 
 [[package]]
 name = "numpy"
