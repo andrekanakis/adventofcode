@@ -6,6 +6,7 @@ requires-python = ">=3.13"
 members = [
     "aoc2025",
     "day02",
+    "day03",
 ]
 
 [[package]]
@@ -27,6 +28,11 @@ requires-dist = [
 name = "day02"
 version = "0.1.0"
 source = { virtual = "day02" }
+
+[[package]]
+name = "day03"
+version = "0.1.0"
+source = { virtual = "day03" }
 
 [[package]]
 name = "numpy"
