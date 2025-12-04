@@ -10,7 +10,7 @@ sample.txt
 **/pyproject.toml
 **/.python_version
 **/uv.lock
-
+**/README.md
 
 # Created by https://www.toptal.com/developers/gitignore/api/git,java,macos,vim,c++,c,python,node,deno,rust,rust-analyzer,cmake,windows,ruby
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,java,macos,vim,c++,c,python,node,deno,rust,rust-analyzer,cmake,windows,ruby

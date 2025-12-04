@@ -1,11 +1,7 @@
-from itertools import combinations
-
 def part1():
     data = open("input.txt")
     res: int = 0
     for line in data:
-        left = 0
-        right = 0
         numbers = list(line[:-1])
         left = numbers[0]
         right = numbers[1]
@@ -20,19 +16,7 @@ def part1():
         res += int(left+right)
     print(res)
 
-
 def part2():
-    data = open("input.txt")
-    res = 0
-    for line in data:
-        numbers = list(line[:-1])
-        combs = combinations(numbers, 12)
-        max_value = max(combs)
-        res += int("".join(max_value))
-    print(res)
-
-
-def part2_2():
     data = open("input.txt")
     res = 0
     for line in data:
@@ -62,6 +46,5 @@ def part2_2():
 
 
 if __name__ == "__main__":
-    # part1()
-    # part2()
-    part2_2()
+    part1()
+    part2()
